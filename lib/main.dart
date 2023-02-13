@@ -64,11 +64,20 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            BlocBuilder<CounterCubit, int>(
+            BlocListener<CounterCubit, int>(
               bloc: myCounter,
-              builder: (context, state) {
-                return Text("$state");
-              },
+              listener: (context, state) {
+                //? Execute this function if the BLoC state undergoes a change.
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("ANJAYYY")),
+                );
+              },  
+              child: BlocBuilder<CounterCubit, int>(
+                bloc: myCounter,
+                builder: (context, state) {
+                  return Text("$state");
+                },
+              ),
             ),
             const SizedBox(height: 10),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
