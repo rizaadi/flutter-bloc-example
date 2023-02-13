@@ -64,14 +64,10 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            StreamBuilder(
-              initialData: myCounter.initialData,
-              stream: myCounter.stream,
-              builder: (context, snapshot) {
-                return Text(
-                  "${snapshot.data}",
-                  style: Theme.of(context).textTheme.headlineMedium,
-                );
+            BlocBuilder<CounterCubit, int>(
+              bloc: myCounter,
+              builder: (context, state) {
+                return Text("$state");
               },
             ),
             const SizedBox(height: 10),
